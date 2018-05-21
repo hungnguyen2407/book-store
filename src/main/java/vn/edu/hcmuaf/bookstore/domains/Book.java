@@ -9,30 +9,34 @@ public class Book implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_book", nullable = false)
+    @Column(name = "book_id", nullable = false)
     private int id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "authors", nullable = false)
+    @Column(name = "author")
     private String author;
 
-    @Column(name = "cost", nullable = false)
-    private Double cost;
+    @Column(name = "price")
+    private Double price;
 
-    @Column(name = "categories", nullable = false)
-    private String categories;
+    @Column(name = "categories")
+    private int categories;
+
+    @Column(name = "status")
+    private boolean status;
 
     public Book() {
         super();
     }
 
-    public Book(String name, String author, Double cost, String categories) {
+    public Book(String name, String author, Double price, int categories, boolean status) {
         this.name = name;
         this.author = author;
-        this.cost = cost;
+        this.price = price;
         this.categories = categories;
+        this.status = status;
     }
 
     public int getId() {
@@ -59,19 +63,27 @@ public class Book implements Serializable {
         this.author = author;
     }
 
-    public Double getCost() {
-        return cost;
+    public Double getPrice() {
+        return price;
     }
 
-    public void setCost(Double cost) {
-        this.cost = cost;
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
-    public String getCategories() {
+    public int getCategories() {
         return categories;
     }
 
-    public void setCategories(String categories) {
+    public void setCategories(int categories) {
         this.categories = categories;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

@@ -9,42 +9,27 @@ public class Account implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_account", nullable = false)
+    @Column(name = "account_id", nullable = false)
     private int id;
 
-    @Column(name = "user_name", nullable = false)
-    private String userName;
-
-    @Column(name = "pass", nullable = false)
+    @Column(name = "pass")
     private String pass;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email")
     private String email;
 
-    @Column(name = "address", nullable = true)
-    private String address;
+    @Column(name = "user_name")
+    private String userName;
 
-    @Column(name = "first_name", nullable = true)
-    private String firstName;
-
-    @Column(name = "last_name", nullable = true)
-    private String lastName;
-
-    @Column(name = "orders", nullable = true)
-    private String orders;
 
     public Account() {
         super();
     }
 
-    public Account(String userName, String pass, String email, String address, String firstName, String lastName, String orders) {
-        this.userName = userName;
+    public Account(String pass, String email, String userName) {
         this.pass = pass;
         this.email = email;
-        this.address = address;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.orders = orders;
+        this.userName = userName;
     }
 
     public int getId() {
@@ -53,14 +38,6 @@ public class Account implements Serializable {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getPass() {
@@ -79,35 +56,11 @@ public class Account implements Serializable {
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getOrders() {
-        return orders;
-    }
-
-    public void setOrders(String orders) {
-        this.orders = orders;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

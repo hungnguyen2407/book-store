@@ -9,22 +9,26 @@ public class Order implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_order", nullable = false)
+    @Column(name = "order_id", nullable = false)
     private int id;
 
-    @Column(name = "books", nullable = false)
+    @Column(name = "list_books")
     private String books;
 
-    @Column(name = "cost", nullable = false)
+    @Column(name = "cost")
     private Double cost;
+
+    @Column(name = "account")
+    private int account;
 
     public Order() {
         super();
     }
 
-    public Order(String books, Double cost) {
+    public Order(String books, Double cost, int account) {
         this.books = books;
         this.cost = cost;
+        this.account = account;
     }
 
     public int getId() {
@@ -49,5 +53,13 @@ public class Order implements Serializable {
 
     public void setCost(Double cost) {
         this.cost = cost;
+    }
+
+    public int getAccount() {
+        return account;
+    }
+
+    public void setAccount(int account) {
+        this.account = account;
     }
 }
