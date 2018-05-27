@@ -13,16 +13,11 @@
             <div class="col-sm-4 col-sm-offset-1">
                 <div class="login-form"><!--login form-->
                     <h2>Sign in your account</h2>
-                    <form action="#" th:action="@{/account/signin}" th:object="${account}" method="POST">
-                        <input type="email" placeholder="Email Address" th:field="*{email}"
-                               th:class="${#fields.hasErrors('email')}? fieldError"/>
-                        <!--<em th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></em>-->
-                        <input type="password" placeholder="Password" th:field="*{pass}"
-                               th:class="${#fields.hasErrors('pass')}? fieldError"/>
-                        <!--<em th:if="${#fields.hasErrors('pass')}" th:errors="*{pass}"></em>-->
-                        <input type="email" placeholder="Email Address"/>
+                    <form th:action="@{/account/signin}" th:object="${account}" method="POST">
+                        <input type="email" placeholder="Email Address" th:field="*{email}"/>
+                        <input type="password" placeholder="Password" th:field="*{pass}"/>
                         <span>
-								<input type="checkbox" class="checkbox"> 
+								<input type="checkbox" class="checkbox">
 								Keep me signed in
 							</span>
                         <button type="submit" class="btn btn-default">Sign in</button>
@@ -35,16 +30,11 @@
             <div class="col-sm-4">
                 <div class="signup-form"><!--sign up form-->
                     <h2>New User ?</h2>
-                    <form action="#" th:action="@{/account/signup}" method="POST"
+                    <form th:action="@{/account/signup}" th:object="${account}" method="POST"
                           novalidate="novalidate">
-                        <input type="text" placeholder="Name" th:class="${#fields.hasErrors('userName')}? fieldError"/>
-                        <!--<em th:if="${#fields.hasErrors('name')}" th:errors="*{userName}"></em>-->
-                        <input type="email" placeholder="Email Address"
-                               th:class="${#fields.hasErrors('email')}? fieldError"/>
-                        <!--<em th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></em>-->
-                        <input type="password" placeholder="Password"
-                               th:class="${#fields.hasErrors('pass')}? fieldError"/>
-                        <!--<em th:if="${#fields.hasErrors('pass')}" th:errors="*{pass}"></em>-->
+                        <input type="text" placeholder="User Name" th:field="*{userName}">
+                        <input type="email" placeholder="Email Address" th:field="*{email}"/>
+                        <input type="password" placeholder="Password" th:field="*{pass}"/>
                         <button type="submit" class="btn btn-default">Sign up</button>
                     </form>
                 </div><!--/sign up form-->

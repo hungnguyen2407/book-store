@@ -4,5 +4,7 @@ import vn.edu.hcmuaf.bookstore.domains.Account;
 
 public interface AccountService {
 
-    boolean signUp(Account newAccount);
+    boolean signUp(String userName, String email, String pass);
+
+    Account signIn(String email, String pass);
 }

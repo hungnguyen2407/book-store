@@ -12,7 +12,17 @@ public class AccountServiceImpl implements AccountService {
     private AccountRepository accountRepository;
 
     @Override
-    public boolean signUp(Account newAccount) {
+    public boolean signUp(String userName, String email, String pass) {
         return false;
     }
+
+    @Override
+    public Account signIn(String email, String pass) {
+        Account account;
+        if ((account = accountRepository.findByEmail(email)) != null)
+            if (account.getPass().equals(pass))
+                return account;
+        return null;
+    }
+
 }

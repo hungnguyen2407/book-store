@@ -22,7 +22,7 @@ public class Book implements Serializable {
     private Double price;
 
     @Column(name = "categories")
-    private int categories;
+    private String categories;
 
     @Column(name = "status")
     private boolean status;
@@ -31,7 +31,7 @@ public class Book implements Serializable {
         super();
     }
 
-    public Book(String name, String author, Double price, int categories, boolean status) {
+    public Book(String name, String author, Double price, String categories, boolean status) {
         this.name = name;
         this.author = author;
         this.price = price;
@@ -71,11 +71,11 @@ public class Book implements Serializable {
         this.price = price;
     }
 
-    public int getCategories() {
+    public String getCategories() {
         return categories;
     }
 
-    public void setCategories(int categories) {
+    public void setCategories(String categories) {
         this.categories = categories;
     }
 
