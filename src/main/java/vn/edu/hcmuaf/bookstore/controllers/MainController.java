@@ -19,7 +19,7 @@ public class MainController {
     private CategoryService categoryService;
 
 
-    @GetMapping("/")
+    @GetMapping({"/", "/index"})
     public String index(Model model) {
         model.addAttribute("books", bookService.getFeatureBooks());
         model.addAttribute("categories", categoryService.getAllCategories());

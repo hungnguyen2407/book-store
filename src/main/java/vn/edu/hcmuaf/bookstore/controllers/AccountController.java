@@ -17,6 +17,16 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
+    @RequestMapping(value = "/info")
+    public String info(HttpSession session) {
+        Object account;
+        if ((account = session.getAttribute("account")) != null)
+            if (account instanceof Account)
+                return "account";
+
+        return "redirect:/login";
+    }
+
     @RequestMapping(value = "/signin", method = RequestMethod.POST)
     public String signIn(HttpSession session, @RequestParam(value = "email") String email, @RequestParam(value = "pass") String pass) {
         Account account;
