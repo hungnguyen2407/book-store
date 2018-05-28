@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.bookstore.configurations;
 
+import org.springframework.cglib.core.internal.Function;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +10,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.Locale;
 
@@ -41,4 +43,8 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         return bean;
     }
 
+    @Bean
+    public Function<String, String> currentUrlWithoutParam() {
+        return param -> ServletUriComponentsBuilder.fromCurrentRequest().replaceQueryParam(param).toUriString();
+    }
 }
