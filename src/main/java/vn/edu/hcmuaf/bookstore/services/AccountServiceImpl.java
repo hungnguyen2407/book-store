@@ -12,12 +12,21 @@ public class AccountServiceImpl implements AccountService {
     private AccountRepository accountRepository;
 
     @Override
-    public boolean signUp(String userName, String email, String pass) {
-        return false;
+    public Account signUp(String userName, String email, String pass) {
+        return accountRepository.save(new Account(Ultilities.encryptText(pass), email, userName));
     }
 
     @Override
     public Account signIn(String email, String pass) {
+        Account account;
+        if ((account = accountRepository.findByEmail(email)) != null)
+            if (account.getPass().equals(Ultilities.encryptText(pass)))
+                return account;
+        return null;
+    }
+
+    @Override
+    public Account signInWithEncryptedPass(String email, String pass) {
         Account account;
         if ((account = accountRepository.findByEmail(email)) != null)
             if (account.getPass().equals(pass))

@@ -17,7 +17,7 @@
                         <input type="email" th:placeholder="#{email}" th:field="*{email}"/>
                         <input type="password" th:placeholder="#{pass}" th:field="*{pass}"/>
                         <span>
-								<input type="checkbox" class="checkbox">
+								<input type="checkbox" class="checkbox" th:name="keepSignIn">
                                 <span th:text="#{keep-sign-in}" th:remove="tag"></span>
 
 							</span>

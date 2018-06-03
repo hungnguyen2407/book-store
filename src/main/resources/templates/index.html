@@ -4,7 +4,6 @@
 <head th:replace="layout :: head"></head>
 <body>
 <header th:replace="layout :: header"></header>
-
 <section id="slider"><!--slider-->
     <div class="container">
         <div class="row">
@@ -22,7 +21,6 @@
                                 <h1 th:text="#{shop-title}"></h1>
                                 <h2 th:text="#{intro-1}"></h2>
                                 <p th:text="#{intro-1-detail}"></p>
-                                <button type="button" class="btn btn-default get" th:text="#{more}"></button>
                             </div>
                             <div class="col-sm-6">
                                 <img src="images/home/girl1.jpg" class="girl img-responsive" alt=""/>
@@ -34,7 +32,6 @@
                                 <h1 th:text="#{shop-title}"></h1>
                                 <h2 th:text="#{intro-2}"></h2>
                                 <p th:text="#{intro-2-detail}"></p>
-                                <button type="button" class="btn btn-default get" th:text="#{more}"></button>
                             </div>
                             <div class="col-sm-6">
                                 <img src="images/home/girl2.jpg" class="girl img-responsive" alt=""/>
@@ -47,7 +44,6 @@
                                 <h1 th:text="#{shop-title}"></h1>
                                 <h2 th:text="#{intro-3}"></h2>
                                 <p th:text="#{intro-3-detail}"></p>
-                                <button type="button" class="btn btn-default get" th:text="#{more}"></button>
                             </div>
                             <div class="col-sm-6">
                                 <img src="images/home/girl3.jpg" class="girl img-responsive" alt=""/>
@@ -101,15 +97,20 @@
                         <div class="col-sm-4">
                             <div class="product-image-wrapper">
                                 <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <a th:href="'/book?id='+${book.id}"><img
-                                                th:src="'images/books/'+${book.id}+'.jpg'" alt=""/></a>
-                                        <h2>$<span th:text="${book.price}"></span></h2>
-                                        <p th:text="${book.name}"></p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i
-                                                class="fa fa-shopping-cart"></i><span th:remove="tag"
-                                                                                      th:text="#{add-to-cart}"></span></a>
-                                    </div>
+                                    <form th:action="@{'/cart/add'}" th:object="${orderItems}" method="get">
+                                        <div class="productinfo text-center">
+                                            <a th:href="'/book?id='+${book.id}"><img
+                                                    th:src="'images/books/'+${book.id}+'.jpg'" alt=""/></a>
+                                            <input th:value="${book.price}" type="hidden" th:field="*{costPerItem}">
+                                            <h2>$<span th:text="${book.price}"></span></h2>
+                                            <a th:href="'/book?id='+${book.id}"><p th:text="${book.name}"></p></a>
+                                            <input type="hidden" value="1" th:field="*{quantity}"/>
+                                            <input type="hidden" th:value="${book.id}" th:field="*{idBook}">
+                                            <a th:href="'/cart/add?id='+${book.id}" class="btn btn-default add-to-cart"><i
+                                                    class="fa fa-shopping-cart"></i><span th:remove="tag"
+                                                                                          th:text="#{add-to-cart}"></span></a>
+                                        </div>
+                                    </form>
                                 </div>
                                 <div class="choose">
                                     <ul class="nav nav-pills nav-justified">

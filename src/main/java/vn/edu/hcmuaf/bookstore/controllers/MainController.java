@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import vn.edu.hcmuaf.bookstore.domains.Account;
+import vn.edu.hcmuaf.bookstore.domains.OrderItems;
 import vn.edu.hcmuaf.bookstore.services.BookService;
 import vn.edu.hcmuaf.bookstore.services.CategoryService;
 
@@ -23,6 +24,7 @@ public class MainController {
     public String index(Model model) {
         model.addAttribute("books", bookService.getFeatureBooks());
         model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("orderItems", new OrderItems());
         return "index";
     }
 

@@ -10,7 +10,7 @@
     <div class="bg">
         <div class="row">
             <div class="col-sm-12">
-                <h2 class="title text-center">Contact <strong>Us</strong></h2>
+                <h2 class="title text-center" th:text="#{contact-us}"></h2>
                 <div id="gmap" class="contact-map">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.2053431558065!2d106.79040365008981!3d10.871980792218697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d89ef59be299%3A0x20d2d1eeb48ca154!2zVHLGsOG7nW5nIMSR4bqhaSBo4buNYyBOw7RuZyBMw6JtIFRow6BuaCBwaOG7kSBI4buTIENow60gTWluaA!5e0!3m2!1svi!2s!4v1526906014882"
                             width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
@@ -20,42 +20,43 @@
         <div class="row">
             <div class="col-sm-8">
                 <div class="contact-form">
-                    <h2 class="title text-center">Get In Touch</h2>
+                    <h2 class="title text-center" th:text="#{feed-back}"></h2>
                     <div class="status alert alert-success" style="display: none"></div>
                     <form id="main-contact-form" class="contact-form row" name="contact-form" method="post">
                         <div class="form-group col-md-6">
-                            <input type="text" name="name" class="form-control" required="required" placeholder="Name">
+                            <input type="text" name="name" class="form-control" required="required"
+                                   th:placeholder="#{your-name}">
                         </div>
                         <div class="form-group col-md-6">
                             <input type="email" name="email" class="form-control" required="required"
-                                   placeholder="Email">
+                                   th:placeholder="#{email}">
                         </div>
                         <div class="form-group col-md-12">
                             <input type="text" name="subject" class="form-control" required="required"
-                                   placeholder="Subject">
+                                   th:placeholder="#{subject}">
                         </div>
                         <div class="form-group col-md-12">
                             <textarea name="message" id="message" required="required" class="form-control" rows="8"
-                                      placeholder="Your Message Here"></textarea>
+                                      th:placeholder="#{message}"></textarea>
                         </div>
                         <div class="form-group col-md-12">
-                            <input type="submit" name="submit" class="btn btn-primary pull-right" value="Submit">
+                            <input type="submit" name="submit" class="btn btn-primary pull-right" th:value="#{submit}">
                         </div>
                     </form>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="contact-info">
-                    <h2 class="title text-center">Contact Info</h2>
+                    <h2 class="title text-center" th:text="#{contact-info}"></h2>
                     <address>
-                        <p>Book-Store Inc.</p>
-                        <p>Nong Lam University, Ho Chi Minh city</p>
-                        <p>Vietnam</p>
-                        <p>Mobile: <a href="tel:+84 944345096">+84 944345096</a></p>
-                        <p>Email: <a href="mailto:14130047@st.hcmuaf.edu.vn">14130047@st.hcmuaf.edu.vn</a></p>
+                        <p th:text="#{address}"></p>
+                        <p><span th:text="#{mobile}" th:remove="tag"></span>: <a href="tel:+84 944345096">+84
+                            944345096</a></p>
+                        <p><span th:text="#{email}" th:remove="tag"></span>: <a href="mailto:14130047@st.hcmuaf.edu.vn">14130047@st.hcmuaf.edu.vn</a>
+                        </p>
                     </address>
                     <div class="social-networks">
-                        <h2 class="title text-center">Social Networking</h2>
+                        <h2 class="title text-center" th:text="#{social-networking}"></h2>
                         <ul>
                             <li>
                                 <a href="#"><i class="fa fa-facebook"></i></a>
