@@ -46,8 +46,17 @@ public class AccountController {
         if ((account = accountService.signIn(email, pass)) != null) {
 
             if (keepSignIn) {
-                response.addCookie(new Cookie("email", email));
-                response.addCookie(new Cookie("pass", Ultilities.encryptText(pass)));
+                Cookie cookie = new Cookie("email", email);
+                cookie.setPath("/bookstore");
+                cookie.setHttpOnly(true);
+                cookie.setMaxAge(3600);
+                response.addCookie(cookie);
+
+                cookie = new Cookie("pass", Ultilities.encryptText(pass));
+                cookie.setPath("/bookstore");
+                cookie.setHttpOnly(true);
+                cookie.setMaxAge(3600);
+                response.addCookie(cookie);
             }
 
             session.setAttribute("account", account);
@@ -57,14 +66,20 @@ public class AccountController {
     }
 
     @GetMapping("/account/signout")
-    public String signOut(HttpSession session) {
-        Object account;
-        if ((account = session.getAttribute("account")) != null)
-            if (account instanceof Account) {
-                session.removeAttribute("account");
-                return "redirect:/index";
-            }
-        return "redirect:/login";
+    public String signOut(HttpSession session, HttpServletResponse response) {
+        session.setAttribute("account", null);
+        session.removeAttribute("account");
+        Cookie cookie = new Cookie("email", null);
+        cookie.setPath("/bookstore");
+        cookie.setHttpOnly(true);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        cookie = new Cookie("pass", null);
+        cookie.setPath("/bookstore");
+        cookie.setHttpOnly(true);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        return "redirect:/index";
     }
 
     @PostMapping("/account/signup")
