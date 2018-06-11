@@ -48,13 +48,13 @@
                                 <form th:action="@{'/cart/update'}" th:method="PUT">
                                     <input type="hidden" name="index" th:value="${ir.index}">
                                     <input class="cart_quantity_input" style=" width: 50px;" type="number"
-                                           name="quantity" th:value="${orderItems.quantity}">
+                                           name="quantity" th:value="${orderItems.quantity}" min="1">
                                     <button type="submit" class="cart_quantity_button" th:text="#{update}"></button>
                                 </form>
                             </td>
                             <td class="cart_total">
                                 <p class="cart_total_price">$ <span th:remove="tag"
-                                                                    th:text="${orderItems.costPerItem*orderItems.quantity}"></span>
+                                                                    th:text="${#numbers.formatDecimal(orderItems.costPerItem*orderItems.quantity, 0, 'COMMA', 2, 'POINT')}"></span>
                                 </p>
                             </td>
                             <td class="cart_delete">

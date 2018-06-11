@@ -30,14 +30,14 @@
                         <h3 class="title text-center" th:text="#{no-product}"></h3>
                     </th:block>
                     <th:block th:each="book:${books}">
-                        <div class="col-sm-4">
+                        <div class="col-sm-4" style=" max-height: 490px;">
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <form th:action="@{'/cart/add'}" method="post">
                                         <div class="productinfo text-center">
                                             <a th:href="'/book?id='+${book.id}"><img
                                                     th:src="'images/books/'+${book.id}+'.jpg'"
-                                                    style=" max-height: 300px;" alt=""/></a>
+                                                    style=" height: 300px;" alt=""/></a>
                                             <input th:value="${book.price}" type="hidden" name="costPerItem">
                                             <h2>$<span th:text="${book.price}"></span></h2>
                                             <a th:href="'/book?id='+${book.id}"><p th:text="${book.name}"></p></a>

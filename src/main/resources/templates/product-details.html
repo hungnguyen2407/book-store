@@ -46,7 +46,7 @@
                                 <span>
 									<span>US $<span th:remove="tag" th:text="${book.price}"></span></span>
 									<label><span th:remove="tag" th:text="#{quantity}"></span>:</label>
-									<input type="number" value="1" name="quantity"/>
+									<input type="number" value="1" name="quantity" min="1"/>
 									<button type="submit" class="btn btn-fefault cart">
 										<i class="fa fa-shopping-cart"></i>
 										<span th:remove="tag" th:text="#{add-to-cart}"></span>
