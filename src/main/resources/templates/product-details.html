@@ -32,53 +32,58 @@
                         </div>
                     </div>
                     <div class="col-sm-7">
-                        <div class="product-information"><!--/product-information-->
-                            <img src="images/product-details/new.jpg" class="newarrival" alt=""/>
-                            <h2 th:text="${book.name}"></h2>
-                            <p><span th:remove="tag" th:text="#{author}"></span>: <span th:remove="tag"
-                                                                                        th:text="${book.author}"></span>
-                            </p>
-                            <img src="images/product-details/rating.png" alt=""/>
-                            <span>
+                        <form th:action="@{'/cart/add'}" method="post">
+                            <div class="product-information"><!--/product-information-->
+                                <img src="images/product-details/new.jpg" class="newarrival" alt=""/>
+                                <h2 th:text="${book.name}"></h2>
+                                <input type="hidden" name="name" th:value="${book.name}">
+                                <input type="hidden" name="id" th:value="${book.id}">
+                                <input type="hidden" name="costPerItem" th:value="${book.price}">
+                                <p><span th:remove="tag" th:text="#{author}"></span>: <span th:remove="tag"
+                                                                                            th:text="${book.author}"></span>
+                                </p>
+                                <img src="images/product-details/rating.png" alt=""/>
+                                <span>
 									<span>US $<span th:remove="tag" th:text="${book.price}"></span></span>
 									<label><span th:remove="tag" th:text="#{quantity}"></span>:</label>
-									<input type="text" value="1" th:name="${quantity}"/>
-									<a th:href="'/cart/add?id='+${book.id}" class="btn btn-fefault cart">
+									<input type="number" value="1" name="quantity"/>
+									<button type="submit" class="btn btn-fefault cart">
 										<i class="fa fa-shopping-cart"></i>
 										<span th:remove="tag" th:text="#{add-to-cart}"></span>
-									</a>
+									</button>
 								</span>
-                            <p><b><span th:text="#{availability}" th:remove="tag"></span>:</b> <span th:remove="tag"
-                                                                                                     th:text="#{availability.in-stock}"></span>
-                            </p>
-                            <p><b><span th:remove="tag" th:text="#{condition}"></span>:</b> <span th:remove="tag"
-                                                                                                  th:text="#{condition.new}"></span>
-                            </p>
-                        </div><!--/product-information-->
+                                <p><b><span th:text="#{availability}" th:remove="tag"></span>:</b> <span th:remove="tag"
+                                                                                                         th:text="#{availability.in-stock}"></span>
+                                </p>
+                                <p><b><span th:remove="tag" th:text="#{condition}"></span>:</b> <span th:remove="tag"
+                                                                                                      th:text="#{condition.new}"></span>
+                                </p>
+                            </div><!--/product-information-->
+                        </form>
                     </div>
                 </div><!--/product-details-->
 
-                <div class="category-tab shop-details-tab"><!--category-tab-->
-                    <div class="col-sm-12">
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a href="#reviews" data-toggle="tab" th:text="#{reviews}"></a></li>
-                        </ul>
-                    </div>
-                    <div class="tab-pane fade active in" id="reviews">
-                        <div class="col-sm-12">
-                            <form action="#">
-										<span>
-											<input type="text" th:placeholder="#{your-name}"/>
-											<input type="email" th:placeholder="#{email }"/>
-										</span>
-                                <textarea name=""></textarea>
-                                <button type="button" class="btn btn-default pull-right">
-                                    <span th:remove="tag" th:text="#{submit}"></span>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                <!--<div class="category-tab shop-details-tab">&lt;!&ndash;category-tab&ndash;&gt;-->
+                <!--<div class="col-sm-12">-->
+                <!--<ul class="nav nav-tabs">-->
+                <!--<li class="active"><a href="#reviews" data-toggle="tab" th:text="#{reviews}"></a></li>-->
+                <!--</ul>-->
+                <!--</div>-->
+                <!--<div class="tab-pane fade active in" id="reviews">-->
+                <!--<div class="col-sm-12">-->
+                <!--<form action="#">-->
+                <!--<span>-->
+                <!--<input type="text" th:placeholder="#{your-name}"/>-->
+                <!--<input type="email" th:placeholder="#{email }"/>-->
+                <!--</span>-->
+                <!--<textarea name=""></textarea>-->
+                <!--<button type="button" class="btn btn-default pull-right">-->
+                <!--<span th:remove="tag" th:text="#{submit}"></span>-->
+                <!--</button>-->
+                <!--</form>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
             </div><!--/category-tab-->
         </div>
     </div>

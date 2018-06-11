@@ -2,6 +2,7 @@ package vn.edu.hcmuaf.bookstore.domains;
 
 public class OrderItems {
     private int idBook;
+    private String nameBook;
     private int quantity;
     private double costPerItem;
 
@@ -9,8 +10,9 @@ public class OrderItems {
         super();
     }
 
-    public OrderItems(int idBook, int quantity, double costPerItem) {
+    public OrderItems(int idBook, String nameBook, int quantity, double costPerItem) {
         this.idBook = idBook;
+        this.nameBook = nameBook;
         this.quantity = quantity;
         this.costPerItem = costPerItem;
     }
@@ -21,6 +23,14 @@ public class OrderItems {
 
     public void setIdBook(int idBook) {
         this.idBook = idBook;
+    }
+
+    public String getNameBook() {
+        return nameBook;
+    }
+
+    public void setNameBook(String nameBook) {
+        this.nameBook = nameBook;
     }
 
     public int getQuantity() {
