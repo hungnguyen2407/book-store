@@ -1,6 +1,9 @@
 package vn.edu.hcmuaf.bookstore.domains;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
@@ -8,11 +11,10 @@ import java.io.Serializable;
 public class Category implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_category", nullable = false)
+    @Column(name = "category_id", nullable = false)
     private int id;
 
-    @Column(name = "category_name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
     public Category() {

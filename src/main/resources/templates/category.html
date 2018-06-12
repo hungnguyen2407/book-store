@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+<body>
+<header th:replace="layout :: header"></header>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="left-sidebar">
+                    <h2 th:text="#{category}"></h2>
+                    <div class="panel-group category-products" id="accordian"><!--category-productsr-->
+                        <th:block th:each="cat:${categories}">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title"><a th:href="'/category?id='+${cat.id}"
+                                                               th:text="#{'category.'+${cat.name}}"></a></h4>
+                                </div>
+                            </div>
+                        </th:block>
+
+                    </div><!--/category-products-->
+                </div>
+            </div>
+            <div class="col-sm-9 padding-right">
+                <div>
+                    <h2 class="title text-center" th:text="#{'category.'+${category.name.toLowerCase()}}"></h2>
+                    <th:block th:if="${#lists.isEmpty(books)}">
+                        <h3 class="title text-center" th:text="#{no-product}"></h3>
+                    </th:block>
+                    <th:block th:each="book:${books}">
+                        <div class="col-sm-4" style=" max-height: 490px;">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <form th:action="@{'/cart/add'}" method="post">
+                                        <div class="productinfo text-center">
+                                            <a th:href="'/book?id='+${book.id}"><img
+                                                    th:src="'images/books/'+${book.id}+'.jpg'"
+                                                    style=" height: 300px;" alt=""/></a>
+                                            <input th:value="${book.price}" type="hidden" name="costPerItem">
+                                            <h2>$<span th:text="${book.price}"></span></h2>
+                                            <a th:href="'/book?id='+${book.id}"><p th:text="${book.name}"></p></a>
+                                            <input type="hidden" th:value="${book.name}" name="name">
+                                            <input type="hidden" value="1" name="quantity"/>
+                                            <input type="hidden" th:value="${book.id}" name="id">
+                                            <button type="submit" class="btn btn-default add-to-cart"><i
+                                                    class="fa fa-shopping-cart"></i><span th:remove="tag"
+                                                                                          th:text="#{add-to-cart}"></span>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!--<div class="choose">-->
+                                <!--<ul class="nav nav-pills nav-justified">-->
+                                <!--<li><a href="#"><i class="fa fa-plus-square"></i><span th:remove="tag"-->
+                                <!--th:text="#{addwishlist}"></span></a>-->
+                                <!--</li>-->
+                                <!--</ul>-->
+                                <!--</div>-->
+                            </div>
+                        </div>
+                    </th:block>
+                </div><!--features_items-->
+            </div>
+        </div>
+    </div>
+</section>
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>

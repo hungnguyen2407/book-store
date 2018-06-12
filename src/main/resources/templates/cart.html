@@ -8,188 +8,118 @@
 
 <section id="cart_items">
     <div class="container">
-        <div class="breadcrumbs">
-            <ol class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li class="active">Shopping Cart</li>
-            </ol>
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="title text-center" th:text="#{cart}"></h2>
+            </div>
         </div>
-        <div class="table-responsive cart_info">
-            <table class="table table-condensed">
-                <thead>
-                <tr class="cart_menu">
-                    <td class="image">Item</td>
-                    <td class="description"></td>
-                    <td class="price">Price</td>
-                    <td class="quantity">Quantity</td>
-                    <td class="total">Total</td>
-                    <td></td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td class="cart_product">
-                        <a href=""><img src="images/cart/one.png" alt=""></a>
-                    </td>
-                    <td class="cart_description">
-                        <h4><a href="">Colorblock Scuba</a></h4>
-                        <p>Web ID: 1089772</p>
-                    </td>
-                    <td class="cart_price">
-                        <p>$59</p>
-                    </td>
-                    <td class="cart_quantity">
-                        <div class="cart_quantity_button">
-                            <a class="cart_quantity_up" href=""> + </a>
-                            <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off"
-                                   size="2">
-                            <a class="cart_quantity_down" href=""> - </a>
-                        </div>
-                    </td>
-                    <td class="cart_total">
-                        <p class="cart_total_price">$59</p>
-                    </td>
-                    <td class="cart_delete">
-                        <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-                    </td>
-                </tr>
+        <th:block th:if="${#lists.isEmpty(cart.listItems)}">
+            <h2 class="text-center" th:text="#{empty-cart}"></h2>
+        </th:block>
 
-                <tr>
-                    <td class="cart_product">
-                        <a href=""><img src="images/cart/two.png" alt=""></a>
-                    </td>
-                    <td class="cart_description">
-                        <h4><a href="">Colorblock Scuba</a></h4>
-                        <p>Web ID: 1089772</p>
-                    </td>
-                    <td class="cart_price">
-                        <p>$59</p>
-                    </td>
-                    <td class="cart_quantity">
-                        <div class="cart_quantity_button">
-                            <a class="cart_quantity_up" href=""> + </a>
-                            <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off"
-                                   size="2">
-                            <a class="cart_quantity_down" href=""> - </a>
-                        </div>
-                    </td>
-                    <td class="cart_total">
-                        <p class="cart_total_price">$59</p>
-                    </td>
-                    <td class="cart_delete">
-                        <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="cart_product">
-                        <a href=""><img src="images/cart/three.png" alt=""></a>
-                    </td>
-                    <td class="cart_description">
-                        <h4><a href="">Colorblock Scuba</a></h4>
-                        <p>Web ID: 1089772</p>
-                    </td>
-                    <td class="cart_price">
-                        <p>$59</p>
-                    </td>
-                    <td class="cart_quantity">
-                        <div class="cart_quantity_button">
-                            <a class="cart_quantity_up" href=""> + </a>
-                            <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off"
-                                   size="2">
-                            <a class="cart_quantity_down" href=""> - </a>
-                        </div>
-                    </td>
-                    <td class="cart_total">
-                        <p class="cart_total_price">$59</p>
-                    </td>
-                    <td class="cart_delete">
-                        <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+
+        <th:block th:unless="${#lists.isEmpty(cart.listItems)}">
+            <div class="table-responsive cart_info">
+                <table class="table table-condensed">
+                    <thead>
+                    <tr class="cart_menu">
+                        <td class="image" th:text="#{book}"></td>
+                        <td class="price" th:text="#{price}"></td>
+                        <td class="quantity" th:text="#{quantity}"></td>
+                        <td class="total" th:text="#{total}"></td>
+                        <td></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <th:block th:each="orderItems,ir : ${cart.listItems}">
+                        <tr>
+
+                            <td class="cart_product">
+                                <a th:href="'/book?id='+${orderItems.idBook}">
+                                    <img style=" max-height: 200px;"
+                                         th:src="'/images/books/'+${orderItems.idBook}+'.jpg'" alt="">
+                                    <span th:remove="tag" th:text="${orderItems.nameBook}"></span>
+                                </a>
+                            </td>
+                            <td class="cart_price">
+                                <p>$ <span th:remove="tag" th:text="${orderItems.costPerItem}"></span></p>
+                            </td>
+                            <td class="cart_quantity">
+                                <form th:action="@{'/cart/update'}" th:method="PUT">
+                                    <input type="hidden" name="index" th:value="${ir.index}">
+                                    <input class="cart_quantity_input" style=" width: 50px;" type="number"
+                                           name="quantity" th:value="${orderItems.quantity}" min="1">
+                                    <button type="submit" class="cart_quantity_button" th:text="#{update}"></button>
+                                </form>
+                            </td>
+                            <td class="cart_total">
+                                <p class="cart_total_price">$ <span th:remove="tag"
+                                                                    th:text="${#numbers.formatDecimal(orderItems.costPerItem*orderItems.quantity, 0, 'COMMA', 2, 'POINT')}"></span>
+                                </p>
+                            </td>
+                            <td class="cart_delete">
+                                <form th:action="@{'/cart/delete/item'}" th:method="delete">
+                                    <input type="hidden" name="index" th:value="${ir.index}">
+                                    <button class="cart_quantity_delete" type="submit"><i class="fa fa-times"></i>
+                                    </button>
+                                </form>
+                            </td>
+
+                        </tr>
+                    </th:block>
+                    </tbody>
+                </table>
+            </div>
+        </th:block>
     </div>
 </section> <!--/#cart_items-->
-
-<section id="do_action">
-    <div class="container">
-        <div class="heading">
-            <h3>What would you like to do next?</h3>
-            <p>Choose if you have a discount code or reward points you want to use or would like to estimate your
-                delivery cost.</p>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="chose_area">
-                    <ul class="user_option">
-                        <li>
-                            <input type="checkbox">
-                            <label>Use Coupon Code</label>
-                        </li>
-                        <li>
-                            <input type="checkbox">
-                            <label>Use Gift Voucher</label>
-                        </li>
-                        <li>
-                            <input type="checkbox">
-                            <label>Estimate Shipping & Taxes</label>
-                        </li>
-                    </ul>
-                    <ul class="user_info">
-                        <li class="single_field">
-                            <label>Country:</label>
-                            <select>
-                                <option>United States</option>
-                                <option>Bangladesh</option>
-                                <option>UK</option>
-                                <option>India</option>
-                                <option>Pakistan</option>
-                                <option>Ucrane</option>
-                                <option>Canada</option>
-                                <option>Dubai</option>
-                            </select>
-
-                        </li>
-                        <li class="single_field">
-                            <label>Region / State:</label>
-                            <select>
-                                <option>Select</option>
-                                <option>Dhaka</option>
-                                <option>London</option>
-                                <option>Dillih</option>
-                                <option>Lahore</option>
-                                <option>Alaska</option>
-                                <option>Canada</option>
-                                <option>Dubai</option>
-                            </select>
-
-                        </li>
-                        <li class="single_field zip-field">
-                            <label>Zip Code:</label>
-                            <input type="text">
-                        </li>
-                    </ul>
-                    <a class="btn btn-default update" href="">Get Quotes</a>
-                    <a class="btn btn-default check_out" href="">Continue</a>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="total_area">
-                    <ul>
-                        <li>Cart Sub Total <span>$59</span></li>
-                        <li>Eco Tax <span>$2</span></li>
-                        <li>Shipping Cost <span>Free</span></li>
-                        <li>Total <span>$61</span></li>
-                    </ul>
-                    <a class="btn btn-default update" href="">Update</a>
-                    <a class="btn btn-default check_out" href="">Check Out</a>
+<th:block th:unless="${#lists.isEmpty(cart.listItems)}">
+    <section id="do_action">
+        <div class="container">
+            <!--<div class="heading">-->
+            <!--<h3 th:text="#{ask-fill-info}"></h3>-->
+            <!--<p><span th:text="#{ask-sign-up}" th:remove="tag"></span><a th:href="'/account/signup'"></a></p>-->
+            <!--</div>-->
+            <div class="row">
+                <!--<div class="col-sm-6">-->
+                <!--<div class="chose_area">-->
+                <!--<ul class="user_info">-->
+                <!--<label th:text="#{user-info}"></label>-->
+                <!--<li class="single_field"><input required th:placeholder="#{your-name}" type="text"/></li>-->
+                <!--<li class="single_field"><input required th:placeholder="#{email}" type="text"/></li>-->
+                <!--<li class="single_field"><input th:placeholder="#{phone}" required type="text"/></li>-->
+                <!--</ul>-->
+                <!--<ul class="user_info">-->
+                <!--<label th:text="#{payment-info}"></label>-->
+                <!--<li class="single_field"><input type="text" th:placeholder="#{country}"></li>-->
+                <!--<li class="single_field"><input type="text" th:placeholder="#{region-state}"></li>-->
+                <!--<li class="single_field"><input type="text" th:placeholder="#{zip-code}"></li>-->
+                <!--</ul>-->
+                <!--</div>-->
+                <!--</div>-->
+                <div class="col-sm-6 pull-right">
+                    <div class="total_area">
+                        <ul>
+                            <li><span th:text="#{product-total}" th:remove="tag"></span><span>$ <span th:remove="tag"
+                                                                                                      th:text="${#numbers.formatDecimal(cart.total, 0, 'COMMA', 2, 'POINT')}"></span></span>
+                            </li>
+                            <li><span th:text="#{tax}" th:remove="tag"></span><span>$ <span th:remove="tag"
+                                                                                            th:text="${#numbers.formatDecimal(cart.total*10/100, 0, 'COMMA', 2, 'POINT')}"></span></span>
+                            </li>
+                            <li><span th:text="#{shipping-cost}" th:remove="tag"></span><span>$ 0</span></li>
+                            <li><span th:text="#{cart-total}" th:remove="tag"></span><span>$ <span th:remove="tag"
+                                                                                                   th:text="${#numbers.formatDecimal((cart.total)-(cart.total*10/100), 0, 'COMMA', 2, 'POINT')}"></span></span>
+                            </li>
+                        </ul>
+                        <form th:action="@{'/checkout'}" th:method="POST">
+                            <button class="btn btn-default check_out" type="submit" th:text="#{checkout}"></button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section><!--/#do_action-->
-
+    </section><!--/#do_action-->
+</th:block>
 <footer th:replace="layout::#footer"></footer>
 </body>
 </html>
