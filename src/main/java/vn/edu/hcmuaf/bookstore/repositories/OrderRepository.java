@@ -1,7 +1,7 @@
 package vn.edu.hcmuaf.bookstore.repositories;
 
 import org.springframework.data.repository.CrudRepository;
-import vn.edu.hcmuaf.bookstore.domains.Category;
+import vn.edu.hcmuaf.bookstore.domains.Order;
 
-public interface OrderRepository extends CrudRepository<Category, Integer> {
+public interface OrderRepository extends CrudRepository<Order, Integer> {
 }

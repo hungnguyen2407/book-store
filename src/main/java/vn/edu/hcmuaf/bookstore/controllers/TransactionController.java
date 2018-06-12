@@ -1,12 +1,14 @@
 package vn.edu.hcmuaf.bookstore.controllers;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import vn.edu.hcmuaf.bookstore.domains.Account;
 import vn.edu.hcmuaf.bookstore.domains.Cart;
 import vn.edu.hcmuaf.bookstore.domains.OrderItems;
+import vn.edu.hcmuaf.bookstore.services.OrderService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,6 +16,9 @@ import java.util.ArrayList;
 
 @Controller
 public class TransactionController {
+
+    @Autowired
+    private OrderService orderService;
 
     @GetMapping("/cart")
     public String cart(HttpSession session, Model model) {
@@ -84,8 +89,23 @@ public class TransactionController {
         cart.rmItem(index);
         return "redirect:/cart";
     }
+
     @GetMapping("/checkout")
-    public String checkOut() {
+    public String checkOut(HttpSession session, Model model) {
+        Cart cart = (Cart) session.getAttribute("cart");
+        cart = cartHandler(session, cart);
+
+        model.addAttribute("cart", cart);
+
         return "checkout";
+    }
+
+    @PostMapping("/checkout")
+    public String saveCart(HttpSession session) {
+        Cart cart = (Cart) session.getAttribute("cart");
+        if (cart != null)
+            orderService.save(cart);
+
+        return "redirect:/index";
     }
 }

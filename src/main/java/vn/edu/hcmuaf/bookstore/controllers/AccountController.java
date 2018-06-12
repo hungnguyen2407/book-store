@@ -59,6 +59,7 @@ public class AccountController {
                 response.addCookie(cookie);
             }
 
+            session.setAttribute("cart", null);
             session.setAttribute("account", account);
             return "redirect:/index";
         }
@@ -79,7 +80,13 @@ public class AccountController {
         cookie.setHttpOnly(true);
         cookie.setMaxAge(0);
         response.addCookie(cookie);
+        cartHandler(session);
         return "redirect:/index";
+    }
+
+    private void cartHandler(HttpSession session) {
+        session.setAttribute("cart", null);
+
     }
 
     @PostMapping("/account/signup")
@@ -90,7 +97,7 @@ public class AccountController {
         Account account = accountService.signIn(email, pass);
         if (account != null) {
             session.setAttribute("account", account);
-            return "forward:/index";
+            return "redirect:/index";
         }
         return "redirect:/login";
     }

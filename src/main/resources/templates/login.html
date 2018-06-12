@@ -13,9 +13,9 @@
             <div class="col-sm-4 col-sm-offset-1">
                 <div class="login-form"><!--login form-->
                     <h2 th:text="#{sign-in}"></h2>
-                    <form th:action="@{/account/signin}" th:object="${account}" method="POST">
-                        <input type="email" th:placeholder="#{email}" th:field="*{email}"/>
-                        <input type="password" th:placeholder="#{pass}" th:field="*{pass}"/>
+                    <form th:action="@{'/account/signin'}" th:method="POST">
+                        <input type="email" th:placeholder="#{email}" name="email"/>
+                        <input type="password" th:placeholder="#{pass}" name="pass"/>
                         <span>
 								<input type="checkbox" class="checkbox" th:name="keepSignIn">
                                 <span th:text="#{keep-sign-in}" th:remove="tag"></span>
@@ -31,7 +31,7 @@
             <div class="col-sm-4">
                 <div class="signup-form"><!--sign up form-->
                     <h2 th:text="#{sign-up}"></h2>
-                    <form th:action="@{/account/signup}" th:object="${account}" method="POST"
+                    <form th:action="@{'/account/signup'}" th:object="${account}" th:method="POST"
                           novalidate="novalidate">
                         <input type="text" th:placeholder="#{user-name}" th:field="*{userName}">
                         <input type="email" th:placeholder="#{email}" th:field="*{email}"/>

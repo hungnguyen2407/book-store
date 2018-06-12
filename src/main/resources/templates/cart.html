@@ -111,7 +111,9 @@
                                                                                                    th:text="${#numbers.formatDecimal((cart.total)-(cart.total*10/100), 0, 'COMMA', 2, 'POINT')}"></span></span>
                             </li>
                         </ul>
-                        <a class="btn btn-default check_out" th:href="'/checkout'" th:text="#{checkout}"></a>
+                        <form th:action="@{'/checkout'}" th:method="POST">
+                            <button class="btn btn-default check_out" type="submit" th:text="#{checkout}"></button>
+                        </form>
                     </div>
                 </div>
             </div>
