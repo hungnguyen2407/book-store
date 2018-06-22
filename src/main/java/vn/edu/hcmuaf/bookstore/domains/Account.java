@@ -21,6 +21,8 @@ public class Account implements Serializable {
     @Column(name = "user_name")
     private String userName;
 
+    @Column(name = "status")
+    private boolean status;
 
     public Account() {
         super();
@@ -30,6 +32,14 @@ public class Account implements Serializable {
         this.pass = pass;
         this.email = email;
         this.userName = userName;
+        this.status = false;
+    }
+
+    public Account(String pass, String email, String userName, boolean status) {
+        this.pass = pass;
+        this.email = email;
+        this.userName = userName;
+        this.status = status;
     }
 
     public int getId() {
@@ -62,5 +72,13 @@ public class Account implements Serializable {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

@@ -61,7 +61,7 @@ public class AccountController {
 
             session.setAttribute("cart", null);
             session.setAttribute("account", account);
-            return "redirect:/index";
+            return "redirect:/account/info";
         }
         return "redirect:/login";
     }

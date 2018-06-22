@@ -1,9 +1,6 @@
 package vn.edu.hcmuaf.bookstore.domains;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -11,11 +8,15 @@ import java.io.Serializable;
 public class Category implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "category_id", nullable = false)
     private int id;
 
     @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "status")
+    private boolean status;
 
     public Category() {
         super();
@@ -23,6 +24,11 @@ public class Category implements Serializable {
 
     public Category(String name) {
         this.name = name;
+    }
+
+    public Category(String name, boolean status) {
+        this.name = name;
+        this.status = status;
     }
 
     public int getId() {
@@ -39,5 +45,13 @@ public class Category implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

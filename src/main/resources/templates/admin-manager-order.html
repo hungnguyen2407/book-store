@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin-layout::head"></head>
+<body>
+<header th:replace="admin-layout::header"></header>
+
+<div class="container">
+    <div class="col-sm-12">
+        <button class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span></button>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col" th:text="#{id}">ID</th>
+                <th scope="col" th:text="#{account}">Account</th>
+                <th scope="col" th:text="#{book}">Book</th>
+                <th scope="col" th:text="#{cost}">Cost</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Account 1</td>
+                    <td>Book 1, Book 2</td>
+                    <td>$10.0</td>
+                    <td class="pull-right">
+                        <form class="col-sm-1 col-sm-offset-1" action="">
+                            <button class="btn btn-default"><span class="glyphicon glyphicon-edit"></span></button>
+                        </form>
+                        <form class="col-sm-1 col-sm-offset-1" action="">
+                            <button class="btn btn-default"><span class="glyphicon glyphicon-ban-circle"></span>
+                            </button>
+                        </form>
+                        <form class="col-sm-1 col-sm-offset-1" action="">
+                            <button class="btn btn-default"><span class="glyphicon glyphicon-remove"></span></button>
+                        </form>
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

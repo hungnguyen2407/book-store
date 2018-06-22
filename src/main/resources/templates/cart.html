@@ -33,13 +33,14 @@
                     <tbody>
                     <th:block th:each="orderItems,ir : ${cart.listItems}">
                         <tr>
-
                             <td class="cart_product">
                                 <a th:href="'/book?id='+${orderItems.idBook}">
                                     <img style=" max-height: 200px;"
                                          th:src="'/images/books/'+${orderItems.idBook}+'.jpg'" alt="">
-                                    <span th:remove="tag" th:text="${orderItems.nameBook}"></span>
+
                                 </a>
+                                <a th:href="'/book?id='+${orderItems.idBook}"> <span th:remove="tag"
+                                                                                     th:text="${orderItems.nameBook}"></span></a>
                             </td>
                             <td class="cart_price">
                                 <p>$ <span th:remove="tag" th:text="${orderItems.costPerItem}"></span></p>
@@ -121,5 +122,10 @@
     </section><!--/#do_action-->
 </th:block>
 <footer th:replace="layout::#footer"></footer>
+<th:block th:if="${success}">
+    <script th:inline="javascript">
+        alert(/*[[#{success-order}]]*/);
+    </script>
+</th:block>
 </body>
 </html>

@@ -101,11 +101,14 @@ public class TransactionController {
     }
 
     @PostMapping("/checkout")
-    public String saveCart(HttpSession session) {
+    public String saveCart(HttpSession session, Model model) {
         Cart cart = (Cart) session.getAttribute("cart");
-        if (cart != null)
+        if (cart != null) {
             orderService.save(cart);
+            model.addAttribute("success", true);
+        }
 
-        return "redirect:/index";
+        model.addAttribute("cart", cart);
+        return "cart";
     }
 }

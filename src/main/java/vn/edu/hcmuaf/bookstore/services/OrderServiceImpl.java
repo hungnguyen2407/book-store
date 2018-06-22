@@ -7,6 +7,8 @@ import vn.edu.hcmuaf.bookstore.domains.Order;
 import vn.edu.hcmuaf.bookstore.domains.OrderItems;
 import vn.edu.hcmuaf.bookstore.repositories.OrderRepository;
 
+import java.util.List;
+
 @Service
 public class OrderServiceImpl implements OrderService {
 
@@ -26,5 +28,10 @@ public class OrderServiceImpl implements OrderService {
         double tax = cart.getTotal() * 10 / 100;
         order.setCost(total - tax);
         orderRepository.save(order);
+    }
+
+    @Override
+    public List<Order> getAll() {
+        return (List<Order>) orderRepository.findAll();
     }
 }

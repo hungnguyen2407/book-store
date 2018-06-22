@@ -18,8 +18,8 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account signIn(String email, String pass) {
-        Account account;
-        if ((account = accountRepository.findByEmail(email)) != null)
+        Account account = accountRepository.findByEmail(email);
+        if (account != null)
             if (account.getPass().equals(Ultilities.encryptText(pass)))
                 return account;
         return null;
