@@ -31,7 +31,7 @@ public class AccountController {
             }
         } else if ((account = accountService.signInWithEncryptedPass(email, pass)) != null) {
             session.setAttribute("account", account);
-            return "redirect:/index";
+            return "redirect:/account/info";
         }
         return "redirect:/login";
     }
@@ -81,7 +81,7 @@ public class AccountController {
         cookie.setMaxAge(0);
         response.addCookie(cookie);
         cartHandler(session);
-        return "redirect:/index";
+        return "redirect:/account/info";
     }
 
     private void cartHandler(HttpSession session) {
@@ -97,7 +97,7 @@ public class AccountController {
         Account account = accountService.signIn(email, pass);
         if (account != null) {
             session.setAttribute("account", account);
-            return "redirect:/index";
+            return "redirect:/account/info";
         }
         return "redirect:/login";
     }

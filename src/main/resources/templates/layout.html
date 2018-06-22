@@ -116,25 +116,29 @@
                     </div>
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
-                            <li><a th:href="@{/}" class="active"><i class="fa fa-home"></i><span th:text="' '+#{home}"
-                                                                                                 th:remove="tag"></span></a>
+                            <li><a id="nav-home" th:href="@{/}"><i class="fa fa-home"></i><span th:text="' '+#{home}"
+                                                                                                th:remove="tag"></span></a>
                             </li>
-                            <li><a th:href="@{/contact}"><i class="fa fa-mobile"></i><span th:text="' '+#{contact}"
+
+                            <li><a id="nav-contact" th:href="@{/contact}"><i class="fa fa-mobile"></i><span
+                                    th:text="' '+#{contact}"
                                                                                            th:remove="tag"></span></a>
                             </li>
 
                             <!--<li><a th:href="@{/wishlist}"><i class="fa fa-star"></i><span th:text="' '+#{wishlist}"-->
                             <!--th:remove="tag">title</span></a>-->
-                            </li>
+                            <!--</li>-->
                             <!--<li><a th:href="@{/checkout}"><i class="fa fa-crosshairs"></i><span-->
                             <!--th:text="' '+#{checkout}"-->
                             <!--th:remove="tag">title</span></a>-->
                             <!--</li>-->
-                            <li><a th:href="@{/cart}"><i class="fa fa-shopping-cart"></i><span th:text="' '+#{cart}"
-                                                                                               th:remove="tag">title</span></a>
+                            <li><a id="nav-cart" th:href="@{/cart}"><i class="fa fa-shopping-cart"></i><span
+                                    th:text="' '+#{cart}"
+                                    th:remove="tag">title</span></a>
                             </li>
-                            <li><a th:href="@{/account/info}"><i class="fa fa-user"></i><span th:text="' '+#{account}"
-                                                                                              th:remove="tag"></span></a>
+                            <li><a id="nav-account" th:href="@{/account/info}"><i class="fa fa-user"></i><span
+                                    th:text="' '+#{account}"
+                                    th:remove="tag"></span></a>
                             </li>
                             <!--<li><a th:href="@{/login}"><i class="fa fa-lock"></i><span th:text="' '+#{sign-in}"-->
                             <!--th:remove="tag">title</span></a>-->
