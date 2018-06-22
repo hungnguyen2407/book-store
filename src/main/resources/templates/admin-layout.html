@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" th:with="lang=${#locale.language}" th:lang="${lang}">
+<head th:fragment="head">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title th:text="#{shop-manager}">Book Store</title>
+    <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link href="../static/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
+    <link href="../static/css/flag-icon.min.css" th:href="@{/css/flag-icon.min.css}" rel="stylesheet">
+    <link href="../static/css/prettyPhoto.css" th:href="@{/css/prettyPhoto.css}" rel="stylesheet">
+    <link href="../static/css/price-range.css" th:href="@{/css/price-range.css}" rel="stylesheet">
+    <link href="../static/css/animate.css" th:href="@{/css/animate.css}" rel="stylesheet">
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet">
+    <link href="../static/css/responsive.css" th:href="@{/css/responsive.css}" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="../static/js/html5shiv.js" th:src="@{/js/html5shiv.js}"></script>
+    <script src="../static/js/respond.min.js" th:src="@{/js/respond.min.js}"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="../static/images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="../static/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="../static/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="../static/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../static/images/ico/apple-touch-icon-57-precomposed.png">
+
+    <script src="../static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
+    <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    <script src="../static/js/jquery.scrollUp.min.js" th:src="@{/js/jquery.scrollUp.min.js}"></script>
+    <script src="../static/js/price-range.js" th:src="@{/js/price-range.js}"></script>
+    <script src="../static/js/jquery.prettyPhoto.js" th:src="@{/js/jquery.prettyPhoto.js}"></script>
+    <script src="../static/js/main.js" th:src="@{/js/main.js}"></script>
+
+</head>
+<body>
+<header th:fragment="header">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" th:href="@{/admin/home}" th:text="#{shop-manager}">Shop Manager</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a th:href="@{/admin/home}" th:text="#{home}">Home</a></li>
+                    <li><a th:href="@{/admin/manager/account}" th:text="#{account-manager}">Account Manager</a></li>
+                    <li><a th:href="@{/admin/manager/product}" th:text="#{product-manager}">Product Manager</a></li>
+                    <li><a th:href="@{/admin/manager/order}" th:text="#{order-manager}">Order Manager</a></li>
+                    <li><a th:href="@{/admin/manager/category}" th:text="#{category-manager}">Category Manager</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="glyphicon" th:href="@{${currentUrl}(lang=en)}"><i class="flag-icon flag-icon-gb"></i></a>
+                    </li>
+                    <li><a class="glyphicon" th:href="@{${currentUrl}(lang=vi)}"><i class="flag-icon flag-icon-vn"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+</body>
+</html>

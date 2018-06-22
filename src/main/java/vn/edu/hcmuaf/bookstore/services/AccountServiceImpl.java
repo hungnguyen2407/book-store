@@ -5,11 +5,18 @@ import org.springframework.stereotype.Service;
 import vn.edu.hcmuaf.bookstore.domains.Account;
 import vn.edu.hcmuaf.bookstore.repositories.AccountRepository;
 
+import java.util.List;
+
 @Service
 public class AccountServiceImpl implements AccountService {
 
     @Autowired
     private AccountRepository accountRepository;
+
+    @Override
+    public List<Account> getAll() {
+        return (List<Account>) accountRepository.findAll();
+    }
 
     @Override
     public Account signUp(String userName, String email, String pass) {

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" th:with="lang=${#locale.language}" th:lang="${lang}">
+<head th:replace="admin-layout::head"></head>
+<body>
+<header th:replace="admin-layout::header"></header>
+
+<div class="container">
+    <h1 class="title text-center">Summary</h1>
+    <div class="row">
+
+        <div class="col-sm-4">
+            <a class="btn btn-default" href="#">Infomation</a>
+
+        </div>
+
+        <div class="col-sm-6">
+            <h4>Total selling: 450$</h4>
+            <h4>Total profit: 100$</h4>
+            <h4>Total user: 200</h4>
+            <h4>New user per week: 4</h4>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

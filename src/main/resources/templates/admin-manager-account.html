@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin-layout::head"></head>
+<body>
+
+<header th:replace="admin-layout::header"></header>
+
+<div class="container">
+    <div class="col-sm-12">
+        <button class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span></button>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col" th:text="#{id}">ID</th>
+                <th scope="col" th:text="#{email}">Email</th>
+                <th scope="col" th:text="#{pass}">Password</th>
+                <th scope="col" th:text="#{user-name}">Name</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="acc,ir:${listAcc}">
+                <tr>
+                    <th scope="row" th:text="${acc.id}">1</th>
+                    <td th:text="${acc.email}">mail@mail</td>
+                    <td th:text="${acc.pass}">secret password</td>
+                    <td th:text="${acc.userName}">user name</td>
+                    <td class="pull-right">
+                        <form class="col-sm-1 col-sm-offset-1" th:action="@{'/admin/manager/account/edt/'+${ir.index}}">
+                            <button class="btn btn-default"><span class="glyphicon glyphicon-edit"></span></button>
+                        </form>
+                        <form class="col-sm-1 col-sm-offset-1" th:action="@{'/admin/manager/account/dis'}"
+                              th:method="post">
+                            <input type="hidden" name="index" th:value="${ir.index}">
+                            <button class="btn btn-default"><span class="glyphicon glyphicon-ban-circle"></span>
+                            </button>
+                        </form>
+                        <form class="col-sm-1 col-sm-offset-1" th:action="@{'/admin/manager/account/rm'}"
+                              th:method="delete">
+                            <input type="hidden" name="index" th:value="${ir.index}">
+                            <button class="btn btn-default"><span class="glyphicon glyphicon-remove"></span></button>
+                        </form>
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

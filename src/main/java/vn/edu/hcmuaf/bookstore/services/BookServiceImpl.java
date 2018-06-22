@@ -21,6 +21,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public List<Book> getAll() {
+        return (List<Book>) bookRepository.findAll();
+    }
+
+    @Override
     public List<Book> findByCategory(int id) {
         List<Book> list = new ArrayList<>();
         StringTokenizer st;
